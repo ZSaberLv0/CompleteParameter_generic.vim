@@ -46,7 +46,7 @@ function! CMGeneric_parser_string(text)
     let i = 0
     while 1
         let data = CMGeneric_parser_splitPair(a:text, i)
-        if empty(data) || data['end'] == data['begin'] + 1
+        if empty(data)
             break
         endif
         let i = data['end'] + 1
