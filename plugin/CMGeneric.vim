@@ -63,7 +63,17 @@ function! CMGeneric_parser_string(text)
     endif
 
     let data = datas[iMaxLen]
-    return [strpart(a:text, data['begin'], data['end'] + 1 - data['begin'])]
+    return [CMGeneric_parser_normalize(strpart(a:text, data['begin'], data['end'] + 1 - data['begin']))]
+endfunction
+
+function! CMGeneric_parser_normalize(text)
+    let text = a:text
+    for t in get(g:, 'CMGeneric_translate', [
+                \   ['…', '...'],
+                \ ])
+        let text = substitute(text, t[0], t[1], 'g')
+    endfor
+    return text
 endfunction
 
 " params:
