@@ -70,6 +70,7 @@ function! CMGeneric_parser_normalize(text)
     let text = a:text
     for t in get(g:, 'CMGeneric_translate', [
                 \   ['…', '...'],
+                \   [', *', ', '],
                 \ ])
         let text = substitute(text, t[0], t[1], 'g')
     endfor
