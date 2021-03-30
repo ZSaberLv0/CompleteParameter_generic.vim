@@ -31,7 +31,7 @@ function! CMGeneric_parser(completed_item)
         endif
     endfor
 
-    if get(g:, 'CMGeneric_detectKind', 1)
+    if get(g:, 'CMGeneric_detectKind', 0)
         let kind = tolower(get(a:completed_item, 'kind', ''))
         if 0
                     \ || kind == 'f'
