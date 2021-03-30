@@ -30,6 +30,17 @@ function! CMGeneric_parser(completed_item)
             return ret
         endif
     endfor
+
+    if get(g:, 'CMGeneric_detectKind', 1)
+        let kind = get(a:completed_item, 'kind', '')
+        if 0
+                    \ || kind == 'f'
+                    \ || stridx(kind, 'method') >= 0
+                    \ || stridx(kind, 'func') >= 0
+            return ['(...)']
+        endif
+    endif
+
     return []
 endfunction
 
