@@ -32,7 +32,7 @@ function! CMGeneric_parser(completed_item)
     endfor
 
     if get(g:, 'CMGeneric_detectKind', 1)
-        let kind = get(a:completed_item, 'kind', '')
+        let kind = tolower(get(a:completed_item, 'kind', ''))
         if 0
                     \ || kind == 'f'
                     \ || stridx(kind, 'method') >= 0
