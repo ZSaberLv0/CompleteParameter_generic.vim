@@ -51,6 +51,11 @@ endfunction
 " func(const char *a, int b)
 " func(std::vector<int> const &a)
 function! CMGeneric_parser_string(text)
+    " some item contains very long document, ignore them
+    if match(a:text, '\n') >= 0
+        return []
+    endif
+
     let datas = []
     let iMaxLen = 0
 
