@@ -4,7 +4,7 @@ function! s:CMGeneric_new_ftfunc(filetype) abort "{{{
   if get(get(g:, 'CMGeneric_blacklist', {}), a:filetype, 0)
         \ || !get(g:, 'CMGeneric_enable', 1)
         \ || !get(b:, 'CMGeneric_enable', 1)
-    return s:new_ftfunc(a:filetype)
+    return {}
   endif
 
   if !get(g:, 'CMGeneric_enable_all', 0)
@@ -68,7 +68,7 @@ let s:ftfunc = {'ft': ''}
 function! cmp#new_ftfunc(filetype) abort "{{{
   let CMGeneric_ftfunc = s:CMGeneric_new_ftfunc(a:filetype)
   if !empty(CMGeneric_ftfunc)
-      return CMGeneric_ftfunc
+    return CMGeneric_ftfunc
   endif
   if empty(a:filetype)
     throw 'filetype is empty'
