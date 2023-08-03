@@ -22,8 +22,9 @@ endfunction
 function! CMGeneric_parser(completed_item)
     for key in [
                 \   'abbr',
-                \   'menu',
                 \   'info',
+                \   'menu',
+                \   'word',
                 \ ]
         let ret = CMGeneric_parser_string(get(a:completed_item, key, ''))
         if !empty(ret)
@@ -37,7 +38,7 @@ function! CMGeneric_parser(completed_item)
                     \ || kind == 'f'
                     \ || stridx(kind, 'method') >= 0
                     \ || stridx(kind, 'func') >= 0
-            return ['(...)']
+            return ['()']
         endif
     endif
 
@@ -87,6 +88,7 @@ function! CMGeneric_parser_normalize(text)
     for t in get(g:, 'CMGeneric_translate', [
                 \   ['…', '...'],
                 \   [', *', ', '],
+                \   ['(\.\.\.)', '()'],
                 \ ])
         let text = substitute(text, t[0], t[1], 'g')
     endfor
